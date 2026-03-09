@@ -68,6 +68,18 @@ public class LevelManager {
     public Level getCurrentLevel() {
         return levels.get(index);
     }
+    public void setLevelIndex(int levelIndex) {
+        if (levelIndex >= 0 && levelIndex < levels.size()) {
+            index = levelIndex;
+            playing.resetAll();
+            playing.setLevelComplete(false);
+            playing.getEnemyManager().setSpawnPoint(levels.get(index).getEnemySpawnPoints());
+            playing.getEnemyManager().addEnemy();
+        }
+    }
+    public int getCurrentLevelIndex() {
+        return index;
+    }
     public BufferedImage getTileGrid(int index){
         return level_sprites[index];
     }

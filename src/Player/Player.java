@@ -407,6 +407,17 @@ public class Player extends Entity {
     public int getEnemy_kill_num(){
         return enemy_kill_num;
     }
+    public float getCurrentHealth() {
+        return currentHealth;
+    }
+    public void setCurrentHealth(float currentHealth) {
+        this.currentHealth = currentHealth;
+        if (this.currentHealth < 0) this.currentHealth = 0;
+        if (this.currentHealth > maxHealth) this.currentHealth = maxHealth;
+    }
+    public float getMaxHealth() {
+        return maxHealth;
+    }
     public void resetPlayer(int x, int y){
         this.x = x;
         this.y = y;

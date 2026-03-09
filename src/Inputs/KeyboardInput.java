@@ -24,6 +24,9 @@ public class KeyboardInput implements KeyListener {
             case PLAYING:
                 gamePanel.getGameController().getPlaying().KeyPressed(e);
                 break;
+            case PROFILE_SELECTION:
+                gamePanel.getGameController().getProfileSelectionUI().keyPressed(e);
+                break;
         }
     }
 

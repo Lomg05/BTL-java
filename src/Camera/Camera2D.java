@@ -68,8 +68,8 @@ public class Camera2D {
     public void render(Graphics g) {
         renderBackground(g, offsetX, offsetY);
         DrawMapInViewPort(g);
-        DebugBox(g);
-        DebugHitBox(g);
+//        DebugBox(g);
+//        DebugHitBox(g);
         drawPlayerInViewPort(g);
     }
 

@@ -24,7 +24,7 @@ public class Menu extends State implements StateMethods{
     }
 
     private void loadButtons(){
-        buttons[0] = new MenuButton(Game.GAME_WIDTH / 2 + 10,(int)(105 * Game.GAME_SCALE * 1.5),0 , GameState.PLAYING);
+        buttons[0] = new MenuButton(Game.GAME_WIDTH / 2 + 10,(int)(105 * Game.GAME_SCALE * 1.5),0 , GameState.PROFILE_SELECTION);
         buttons[1] = new MenuButton(Game.GAME_WIDTH / 2 + 10,(int)(150 * Game.GAME_SCALE * 1.5),1 , GameState.OPTIONS);
         buttons[2] = new MenuButton(Game.GAME_WIDTH / 2 + 10,(int)(195 * Game.GAME_SCALE * 1.5),2 , GameState.QUIT);
     }
@@ -88,7 +88,7 @@ public class Menu extends State implements StateMethods{
                 if (button.getMousePressed()) {
                     button.applyGameState();
                 }
-                if (button.getGameState() == GameState.PLAYING) {
+                if (button.getGameState() == GameState.PROFILE_SELECTION) {
                     gameController.getAudioPlayer().playSong(AudioPlayer.GAME);
                 }
                 break;

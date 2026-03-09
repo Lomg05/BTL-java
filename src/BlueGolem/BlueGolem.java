@@ -245,7 +245,7 @@
         }
         public void render(Graphics g, int offsetX, int offsetY) {
             HealthBar(g , offsetX , offsetY);
-            Debug(g,offsetX,offsetY);
+//            Debug(g,offsetX,offsetY);
             blueGolemStateMachine.render(g, offsetX, offsetY);
         }
         public void Debug(Graphics g, int offsetX, int offsetY) {

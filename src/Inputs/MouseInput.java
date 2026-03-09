@@ -23,6 +23,7 @@ public class MouseInput implements MouseListener , MouseMotionListener {
             case MENU -> gamePanel.getGameController().getMenu().MousePressed(e);
             case OPTIONS -> gamePanel.getGameController().getMenuOption().MousePressed(e);
             case PLAYING -> gamePanel.getGameController().getPlaying().MousePressed(e);
+            case PROFILE_SELECTION -> gamePanel.getGameController().getProfileSelectionUI().mousePressed(e);
         }
     }
 
@@ -32,6 +33,7 @@ public class MouseInput implements MouseListener , MouseMotionListener {
             case MENU -> gamePanel.getGameController().getMenu().MouseReleased(e);
             case OPTIONS -> gamePanel.getGameController().getMenuOption().MouseReleased(e);
             case PLAYING -> gamePanel.getGameController().getPlaying().MouseReleased(e);
+            case PROFILE_SELECTION -> {} // ProfileSelectionUI doesn't need mouseReleased
         }
     }
 

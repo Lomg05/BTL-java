@@ -6,6 +6,7 @@ import Game.*;
 import Levels.LevelManager;
 import ObjectManager.ObjecManager;
 import Player.Player;
+import Profile.ProfileData;
 import ui.*;
 import utilz.LoadSave;
 
@@ -31,6 +32,7 @@ public class Playing extends State implements StateMethods {
     private Font font;
     private BufferedImage process;
     private TextDamePool pool;
+    private ProfileData currentProfile;
 
     // INTRO
     private boolean introActive = true;
@@ -51,6 +53,46 @@ public class Playing extends State implements StateMethods {
         levelCompleteOverlay = new LevelCompleteOverlay(this);
         gameCompletedOverlay = new GameCompletedOverlay(this);
         gameOverOverlay = new GameOverOverlay(this);
+    }
+
+    public void loadProfileData(ProfileData profileData) {
+        this.currentProfile = profileData;
+        if (profileData != null) {
+            // Load level
+            levelManager.setLevelIndex(profileData.getCurrentLevel());
+            
+            // Load player health and enemy kill count
+            player.setCurrentHealth(profileData.getPlayerHealth());
+            player.setEnemy_kill_num(profileData.getEnemyKillCount());
+            
+            // Reset intro for profile loaded games
+            introActive = true;
+            introTimer = 0;
+        }
+    }
+
+    public void saveProfileData() {
+        if (currentProfile != null) {
+            currentProfile.setCurrentLevel(levelManager.getCurrentLevelIndex());
+            currentProfile.setPlayerHealth(player.getCurrentHealth());
+            currentProfile.setEnemyKillCount(player.getEnemy_kill_num());
+            currentProfile.setLastPlayedAt(System.currentTimeMillis());
+            
+            try {
+                gameController.getProfileManager().saveProfile(currentProfile);
+            } catch (Exception e) {
+                System.err.println("Lỗi khi lưu profile: " + e.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public void setGameState(GameState gs) {
+        // Save profile before changing state
+        if (gs == GameState.MENU) {
+            saveProfileData();
+        }
+        super.setGameState(gs);
     }
 
     @Override
