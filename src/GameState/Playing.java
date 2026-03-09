@@ -7,13 +7,12 @@ import Levels.LevelManager;
 import ObjectManager.ObjecManager;
 import Player.Player;
 import Profile.ProfileData;
-import ui.*;
-import utilz.LoadSave;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import ui.*;
+import utilz.LoadSave;
 
 public class Playing extends State implements StateMethods {
     public Boolean gameComplete = false;
@@ -33,6 +32,7 @@ public class Playing extends State implements StateMethods {
     private BufferedImage process;
     private TextDamePool pool;
     private ProfileData currentProfile;
+    private long sessionStartTime;
 
     // INTRO
     private boolean introActive = true;
@@ -61,9 +61,17 @@ public class Playing extends State implements StateMethods {
             // Load level
             levelManager.setLevelIndex(profileData.getCurrentLevel());
             
+            // Load player position
+            player.setX(profileData.getPlayerX());
+            player.setY(profileData.getPlayerY());
+            
             // Load player health and enemy kill count
             player.setCurrentHealth(profileData.getPlayerHealth());
             player.setEnemy_kill_num(profileData.getEnemyKillCount());
+            
+            // Set session start time for tracking playtime
+            sessionStartTime = System.currentTimeMillis();
+            profileData.setSessionStartTime(sessionStartTime);
             
             // Reset intro for profile loaded games
             introActive = true;
@@ -74,14 +82,24 @@ public class Playing extends State implements StateMethods {
     public void saveProfileData() {
         if (currentProfile != null) {
             currentProfile.setCurrentLevel(levelManager.getCurrentLevelIndex());
+            currentProfile.setPlayerX(player.getX());
+            currentProfile.setPlayerY(player.getY());
             currentProfile.setPlayerHealth(player.getCurrentHealth());
             currentProfile.setEnemyKillCount(player.getEnemy_kill_num());
+            
+            // Update playtime: add session duration to existing playtime
+            if (sessionStartTime > 0) {
+                long sessionDuration = System.currentTimeMillis() - sessionStartTime;
+                long totalPlayTime = currentProfile.getPlayTime() + sessionDuration;
+                currentProfile.setPlayTime(totalPlayTime);
+            }
+            
             currentProfile.setLastPlayedAt(System.currentTimeMillis());
             
             try {
                 gameController.getProfileManager().saveProfile(currentProfile);
             } catch (Exception e) {
-                System.err.println("Lỗi khi lưu profile: " + e.getMessage());
+                System.err.println("Error saving profile: " + e.getMessage());
             }
         }
     }
@@ -93,6 +111,11 @@ public class Playing extends State implements StateMethods {
             saveProfileData();
         }
         super.setGameState(gs);
+    }
+
+    public void onGamePaused() {
+        // Save profile when game is paused (optional)
+        saveProfileData();
     }
 
     @Override

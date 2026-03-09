@@ -69,6 +69,7 @@ public class GameOverOverlay {
             }
         } else if (isIn(menuButton,e)){
             if (menuButton.getMousePressed()){
+                playing.saveProfileData();
                 playing.replay();
                 playing.setGameState(GameState.MENU);
             }

@@ -1,14 +1,13 @@
 package Game;
 import AudioPlayer.AudioPlayer;
 import GameState.GameState;
-import GameState.Playing;
 import GameState.Menu;
 import GameState.MenuOption;
+import GameState.Playing;
 import Profile.ProfileManager;
+import java.awt.*;
 import ui.AudioOptions;
 import ui.ProfileSelectionUI;
-
-import java.awt.*;
 
 
 public class GameController {

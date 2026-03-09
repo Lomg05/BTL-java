@@ -64,10 +64,12 @@ public class LevelCompleteOverlay {
     public void MouseReleased(MouseEvent e) {
         if (isIn(nextButton,e)){
             if (nextButton.getMousePressed()){
+                playing.saveProfileData();
                 playing.getLevelManager().loadNextLevel();
             }
         } else if (isIn(menuButton,e)){
             if (menuButton.getMousePressed()){
+                playing.saveProfileData();
                 playing.setGameState(GameState.MENU);
             }
         }

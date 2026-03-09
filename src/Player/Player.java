@@ -4,10 +4,9 @@ import Entities.Entity;
 import Game.Game;
 import GameState.Playing;
 import Levels.LevelManager;
-import utilz.LoadSave;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import utilz.LoadSave;
 
 public class Player extends Entity {
     protected Playing playing;
@@ -407,6 +406,22 @@ public class Player extends Entity {
     public int getEnemy_kill_num(){
         return enemy_kill_num;
     }
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
     public float getCurrentHealth() {
         return currentHealth;
     }

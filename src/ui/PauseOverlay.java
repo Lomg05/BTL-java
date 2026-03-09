@@ -84,12 +84,14 @@ public class PauseOverlay {
          if (isIn(e,menuB)) {
             if (menuB.getMousePressed()) {
                 menuB.setMousePressed(false);
+                playing.saveProfileData();
                 playing.setGameState(GameState.MENU);
                 playing.unpause();
             }
         } else if (isIn(e,replayB)) {
             if (replayB.getMousePressed()) {
                 replayB.setMousePressed(false);
+                playing.saveProfileData();
                 playing.replay();
                 playing.unpause();
             }

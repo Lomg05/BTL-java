@@ -1,11 +1,10 @@
 package Levels;
 
-import GameState.Playing;
-import utilz.LoadSave;
 import Game.Game;
-
+import GameState.Playing;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import utilz.LoadSave;
 
 public class LevelManager {
     private BufferedImage[] level_sprites;

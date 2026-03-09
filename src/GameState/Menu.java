@@ -2,13 +2,12 @@ package GameState;
 
 import AudioPlayer.AudioPlayer;
 import Game.*;
-import ui.MenuButton;
-import utilz.LoadSave;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import ui.MenuButton;
+import utilz.LoadSave;
 
 public class Menu extends State implements StateMethods{
     private MenuButton[] buttons;
