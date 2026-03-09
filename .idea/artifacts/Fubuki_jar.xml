@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Fubuki:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Fubuki_jar</output-path>
+    <root id="archive" name="Fubuki.jar">
+      <element id="module-output" name="Fubuki" />
+      <element id="dir-copy" path="$PROJECT_DIR$/res" />
+    </root>
+  </artifact>
+</component>
